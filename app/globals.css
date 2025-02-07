@@ -2,20 +2,43 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.neoshadows {
+    white-space: nowrap;
+    border-radius: 8px;
+    border-width: 2px;
+    --tw-border-opacity: 1;
+    border-color: rgb(24 24 27 / var(--tw-border-opacity, 1));
+    font-weight: 500;
+    --tw-shadow: 4px 4px 0px rgba(24, 24, 27, 1);
+    --tw-shadow-colored: 4px 4px 0px var(--tw-shadow-color);
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+        var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+    --tw-ring-offset-color: #fff;
+    transition-property: all;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 75ms;
+}
+
+.neoshadows:hover {
+    --tw-translate-x: 4px !important;
+    --tw-translate-y: 4px !important;
+    transform: translate(var(--tw-translate-x), var(--tw-translate-y))
+        rotate(var(--tw-rotate)) skew(var(--tw-skew-x)) skewY(var(--tw-skew-y))
+        scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y)) !important;
+    --tw-shadow: 0px 0px 0px rgba(24, 24, 27, 1);
+    --tw-shadow-colored: 0px 0px 0px var(--tw-shadow-color);
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+        var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+@layer base {
+  :root {
+        --radius: 0.5rem;
+    }
 }
