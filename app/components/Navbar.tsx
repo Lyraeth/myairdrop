@@ -20,10 +20,6 @@ import { motion } from "motion/react";
 
 const navItems = [
     {
-        title: "Home",
-        url: "/",
-    },
-    {
         title: "Dashboard",
         url: "/dashboard",
     },
@@ -45,15 +41,8 @@ export default function Navbar() {
             <div className="flex flex-row justify-between items-center w-full md:w-3/4">
                 <DropdownMenu>
                     <DropdownMenuTrigger className="neoshadows px-2 py-1">
-                        <motion.div
-                            whileTap={{ scale: 1.2 }}
-                            transition={{ type: "spring" }}
-                        >
-                            <Link href="/" className="hidden md:block">
-                                MyAirdrop
-                            </Link>
-                            <List className="block md:hidden" />
-                        </motion.div>
+                        <div className="hidden md:block">MyAirdrop</div>
+                        <List className="block md:hidden" />
                     </DropdownMenuTrigger>
                     <DropdownMenuContent className="block md:hidden my-2">
                         {navItems
@@ -72,10 +61,7 @@ export default function Navbar() {
                         <NavigationMenuList>
                             <NavigationMenuItem>
                                 {navItems
-                                    .filter(
-                                        (item) =>
-                                            session || item.title === "Home"
-                                    )
+                                    .filter(() => session)
                                     .map((item) => (
                                         <Link
                                             key={item.url}
