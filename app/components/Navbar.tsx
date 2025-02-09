@@ -37,8 +37,8 @@ export default function Navbar() {
     const { data: session } = useSession();
 
     return (
-        <nav className="flex flex-row justify-center items-center p-4  border-b-2 border-black shadow-md">
-            <div className="flex flex-row justify-between items-center w-full md:w-3/4">
+        <nav className="flex flex-row justify-center items-center p-4 border-b-4 border-black shadow-md">
+            <div className="flex flex-row justify-between items-center w-full">
                 <DropdownMenu>
                     <DropdownMenuTrigger className="neoshadows px-2 py-1">
                         <div className="hidden md:block">MyAirdrop</div>
