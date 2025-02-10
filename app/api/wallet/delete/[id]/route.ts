@@ -1,9 +1,13 @@
 import { getServerSession } from "next-auth";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { authOptions } from "@/lib/auth";
 import prisma from "@/lib/prisma";
 
-export const DELETE = async (req: Request, { params }: { params: { id: string } }) => {
+export async function DELETE(
+    request: NextRequest,
+    { params }: { params: Promise<{ id: string }> }
+) {
+    const id = (await params).id;
     const session = await getServerSession(authOptions);
 
     if (!session || !session.user?.email) {
@@ -16,7 +20,7 @@ export const DELETE = async (req: Request, { params }: { params: { id: string } 
     try {
         const result = await prisma.wallets.delete({
             where: {
-                id: Number(params.id),
+                id: Number(id),
             },
         });
         return NextResponse.json(result);
@@ -26,5 +30,4 @@ export const DELETE = async (req: Request, { params }: { params: { id: string } 
             { status: 404 }
         );
     }
-};
-
+}

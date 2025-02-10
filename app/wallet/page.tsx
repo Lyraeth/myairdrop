@@ -18,7 +18,10 @@ async function getData(): Promise<Wallets[]> {
         },
     });
 
-    return data;
+    return data.map((wallet) => ({
+        ...wallet,
+        address: wallet.address ?? "[No Address]",
+    }));
 }
 
 export default async function Wallet() {

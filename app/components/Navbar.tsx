@@ -20,6 +20,10 @@ import { motion } from "motion/react";
 
 const navItems = [
     {
+        title: "Home",
+        url: "/",
+    },
+    {
         title: "Dashboard",
         url: "/dashboard",
     },
