@@ -1,6 +1,31 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## 💰 MyAirdrop
 
-## Getting Started
+MyAirdrop is a web application that helps users efficiently manage their airdrops. With MyAirdrop, users can input their wallets, track the airdrops they participate in, and manage multiple wallets used for airdrops.
+
+The concept applied is Smart Airdrop Management—optimizing airdrop opportunities with better organization. This feature helps users avoid missing rewards, ensure the correct wallet usage, and save time in managing various airdrops.
+
+In short: MyAirdrop is not just a tracker but a smart solution to maximize the benefits of the airdrops you participate in. 🚀
+
+## 🌟 Features
+
+* 📊 Dashboard Overview: Visualize your airdrop and wallet. 
+* 🗂️ Category Management: Organize expenses into customizable categories.
+* 🔍 Search & Filters: Quickly find specific airdrop or wallet with robust search and filtering tools.
+* 📱 Responsive Design: Fully optimized for mobile, tablet, and desktop devices.
+* 🚀 Performance Optimized: Leveraging the latest features of Next.js 15 for fast, SEO-friendly pages.
+
+
+## 🛠️ Tech Stack
+* Frontend: Next.js 15, TailwindCSS, Framer Motion, shadcn/ui
+* Backend: Next.js
+* Database: Prisma Postgress
+* Authentication: NextAuth.js
+* Hosting: Vercel
+
+
+## 🏃 Getting Started
+
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 First, run the development server:
 
@@ -20,17 +45,30 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Learn More
+## 📈 Roadmap
+* Integrate third-party APIs for exchange rates
 
-To learn more about Next.js, take a look at the following resources:
+## 🤝 Contributing
+Contributions are welcome! Follow these steps:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Fork the repository
+2. Create a new branch (```git checkout -b feature/new-feature```)
+3. Commit your changes (```git commit -m 'Add some feature'```)
+4. Push the branch (```git push origin feature/new-feature```)
+5. Open a pull request
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🛡️ License
+This project is licensed under the MIT License.
 
-## Deploy on Vercel
+## 🙌 Acknowledgements
+* [Next.js Documentation ](https://nextjs.org/docs)
+* [Tailwindcss Documentation ](https://tailwindcss.com/docs/installation/framework-guides/nextjs)
+* [Shadcn/ui Documentation ](https://ui.shadcn.com/docs/installation/next)
+* [Prisma Postgres Documentation ](https://www.prisma.io/)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 📧 Contact
+For questions or suggestions, feel free to reach out:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Author: [Lyraeth](https://github.com/Lyraeth)
+
+
