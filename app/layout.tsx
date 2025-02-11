@@ -22,11 +22,11 @@ export default function RootLayout({
     return (
         <html lang="en">
             <LayoutSession>
-                <body className={overpass.className}>
-                    <div className="top-0 bottom-0 right-0 left-0 h-screen w-full bg-[#fcfcf7] text-black">
-                        <Navbar />
-                        {children}
-                    </div>
+                <body
+                    className={`${overpass.className} top-0 bottom-0 right-0 left-0 h-full w-full bg-[#fcfcf7] text-black`}
+                >
+                    <Navbar />
+                    {children}
                 </body>
             </LayoutSession>
         </html>
