@@ -3,7 +3,7 @@
 import { ColumnDef } from "@tanstack/react-table";
 import { Button } from "@/components/ui/button";
 import { ArrowUpDown } from "lucide-react";
-import WalletActions from "./components/WalletActions";
+import WalletActions from "@/app/wallet/components/WalletActions";
 
 export type Wallets = {
     id: number;
@@ -46,12 +46,8 @@ export const columns: ColumnDef<Wallets>[] = [
     {
         id: "action",
         cell: ({ row }) => {
-            return (
-                <WalletActions
-                    walletId={row.original.id}
-                    address={row.original.address}
-                />
-            );
+            const crud = row.original;
+            return <WalletActions walletId={crud.id} address={crud.address} />;
         },
     },
 ];

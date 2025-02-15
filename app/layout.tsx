@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { Overpass } from "next/font/google";
 import Navbar from "./components/Navbar";
 import "./globals.css";
-import LayoutSession from "./components/LayoutSession";
+import LayoutSession from "@/app/components/LayoutSession";
+import { Toaster } from "@/components/ui/sonner";
 
 const overpass = Overpass({
     weight: ["400"],
@@ -27,6 +28,7 @@ export default function RootLayout({
                 >
                     <Navbar />
                     {children}
+                    <Toaster />
                 </body>
             </LayoutSession>
         </html>

@@ -1,7 +1,11 @@
+import PageTransition from "@/app/components/motion/PageTransition";
+
 export default function Home() {
     return (
-        <main className="mt-20 flex justify-center items-center">
-            <h1>Welcome to MyAirdrop</h1>
-        </main>
+        <PageTransition>
+            <main className="mt-20 flex justify-center items-center">
+                <h1 className="neoshadows p-2">Welcome to MyAirdrop!</h1>
+            </main>
+        </PageTransition>
     );
 }

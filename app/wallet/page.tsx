@@ -1,9 +1,10 @@
 import { authOptions } from "@/lib/auth";
 import prisma from "@/lib/prisma";
-import { getServerSession } from "next-auth";
-import { Wallets, columns } from "./columns";
-import { DataTable } from "./data-table";
+import { Wallets, columns } from "@/app/wallet/columns";
+import { DataTable } from "@/app/wallet/data-table";
 import AppBreadcrumb from "@/components/breadcrumb";
+import PageTransition from "@/app/components/motion/PageTransition";
+import { getServerSession } from "next-auth";
 
 async function getData(): Promise<Wallets[]> {
     const session = await getServerSession(authOptions);
@@ -37,9 +38,11 @@ export default async function Wallet() {
     }
 
     return (
-        <main className="container mx-auto py-5 px-5">
-            <AppBreadcrumb />
-            <DataTable columns={columns} data={data} />
-        </main>
+        <PageTransition>
+            <main className="container mx-auto py-5 px-5">
+                <AppBreadcrumb />
+                <DataTable columns={columns} data={data} />
+            </main>
+        </PageTransition>
     );
 }
