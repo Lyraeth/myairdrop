@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { DrawerWalletPOST } from "@/components/wallet/drawer-walletPost";
+import { DialogWalletPOST } from "@/app/wallet/components/CreateWallet";
 import RefreshButton from "@/app/components/RefreshButton";
 import * as React from "react";
 import {
@@ -54,11 +54,11 @@ export function DataTable<TData, TValue>({
     });
 
     return (
-        <div>
+        <>
             <div className="flex flex-row justify-between py-4">
                 <div className="flex flex-row w-full space-x-4 mr-2">
                     <Input
-                        placeholder="Cari wallet ..."
+                        placeholder="Cari nama wallet ..."
                         value={
                             (table
                                 .getColumn("name")
@@ -73,7 +73,7 @@ export function DataTable<TData, TValue>({
                     />
                     <RefreshButton />
                 </div>
-                <DrawerWalletPOST />
+                <DialogWalletPOST />
             </div>
             <div className="rounded-md border neoshadows">
                 <Table>
@@ -128,26 +128,31 @@ export function DataTable<TData, TValue>({
                     </TableBody>
                 </Table>
             </div>
-            <div className="flex items-center justify-end space-x-2 py-4">
-                <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => table.previousPage()}
-                    disabled={!table.getCanPreviousPage()}
-                    className="neoshadows"
-                >
-                    Previous
-                </Button>
-                <Button
-                    variant="outline"
-                    size="sm"
-                    onClick={() => table.nextPage()}
-                    disabled={!table.getCanNextPage()}
-                    className="neoshadows"
-                >
-                    Next
-                </Button>
+            <div className="flex items-center justify-between space-x-2 py-4">
+                <div className="neoshadows px-2 py-1">
+                    <p>Total Wallet : {data.length}</p>
+                </div>
+                <div className="flex flex-row space-x-2">
+                    <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => table.previousPage()}
+                        disabled={!table.getCanPreviousPage()}
+                        className="neoshadows"
+                    >
+                        Previous
+                    </Button>
+                    <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => table.nextPage()}
+                        disabled={!table.getCanNextPage()}
+                        className="neoshadows"
+                    >
+                        Next
+                    </Button>
+                </div>
             </div>
-        </div>
+        </>
     );
 }

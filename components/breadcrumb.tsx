@@ -26,7 +26,7 @@ export default function AppBreadcrumb() {
             <Breadcrumb>
                 <BreadcrumbList>
                     <BreadcrumbItem>
-                        <BreadcrumbLink>
+                        <BreadcrumbLink asChild>
                             <Link href={"/"}>Home</Link>
                         </BreadcrumbLink>
                     </BreadcrumbItem>
