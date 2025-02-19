@@ -20,7 +20,7 @@ export async function GET(
     try {
         const result = await prisma.wallets.findUnique({
             where: {
-                id: Number(id),
+                id: id,
             },
         });
         return NextResponse.json({

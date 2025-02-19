@@ -160,7 +160,7 @@ const EditWallet: React.FC<WalletEditActionsProps> = ({
                         type="submit"
                         disabled={isSubmitting}
                         onClick={form.handleSubmit(handleEdit)}
-                        className="neoshadows bg-base3 hover:bg-green-400"
+                        className="neoshadows bg-base3 hover:bg-base3"
                     >
                         {isSubmitting ? "Submitting..." : "Change"}
                     </Button>

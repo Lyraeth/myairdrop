@@ -20,7 +20,7 @@ export async function DELETE(
     try {
         const result = await prisma.wallets.delete({
             where: {
-                id: Number(id),
+                id: id,
             },
         });
         return NextResponse.json({

@@ -43,14 +43,15 @@ model Session {
 }
 
 model User {
-    id            String    @id @default(cuid())
+    id            String     @id @default(cuid())
     name          String?
-    email         String?   @unique
+    email         String?    @unique
     emailVerified DateTime?
     image         String?
     accounts      Account[]
     sessions      Session[]
     Wallets       Wallets[]
+    Airdrops      Airdrops[]
 }
 
 model VerificationToken {
@@ -63,12 +64,55 @@ model VerificationToken {
 }
 
 model Wallets {
-    id         Int      @id @default(autoincrement())
-    userId     String   @map("user_id")
+    id         String     @id @default(cuid())
+    userId     String     @map("user_id")
     name       String
     address    String
-    created_at DateTime @default(now())
-    updated_at DateTime @updatedAt
+    created_at DateTime   @default(now())
+    updated_at DateTime   @updatedAt
+    Airdrops   Airdrops[]
 
     user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+    @@index([name])
+    @@index([userId])
+}
+
+model Tag {
+    id   String @id @default(cuid())
+    name String @unique
+
+    airdrops AirdropsTag[]
+
+    @@index([name])
+}
+
+model AirdropsTag {
+    airdropId String
+    tagId     String
+
+    airdrop Airdrops @relation(fields: [airdropId], references: [id], onDelete: Cascade)
+    tag     Tag      @relation(fields: [tagId], references: [id], onDelete: Cascade)
+
+    @@id([airdropId, tagId])
+}
+
+model Airdrops {
+    id          String        @id @default(cuid())
+    userId      String        @map("user_id")
+    walletId    String        @map("wallet_id")
+    nameProject String
+    linkProject String?
+    linkAirdrop String?
+    descAirdrop String?
+    tags        AirdropsTag[]
+    created_at  DateTime      @default(now())
+    updated_at  DateTime      @updatedAt
+
+    wallet Wallets @relation(fields: [walletId], references: [id], onDelete: Cascade)
+    user   User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+    @@index([nameProject])
+    @@index([userId])
+    @@index([walletId])
 }

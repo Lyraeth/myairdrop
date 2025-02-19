@@ -22,7 +22,7 @@ export async function PUT(
     try {
         const result = await prisma.wallets.update({
             where: {
-                id: Number(id),
+                id: id,
             },
             data: {
                 name: name,

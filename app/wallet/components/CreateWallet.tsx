@@ -123,7 +123,7 @@ export function DialogWalletPOST() {
                         type="submit"
                         disabled={isSubmitting}
                         onClick={form.handleSubmit(onSubmit)}
-                        className="neoshadows bg-green-200 hover:bg-green-400"
+                        className="neoshadows bg-base3 hover:bg-base3"
                     >
                         {isSubmitting ? "Submitting..." : "Submit"}
                     </Button>
