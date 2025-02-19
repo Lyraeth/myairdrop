@@ -23,7 +23,9 @@ export async function DELETE(
                 id: Number(id),
             },
         });
-        return NextResponse.json(result);
+        return NextResponse.json({
+            message: "Delete wallet success!",
+        });
     } catch (error) {
         return NextResponse.json(
             { error: "Wallet not found or already deleted" },

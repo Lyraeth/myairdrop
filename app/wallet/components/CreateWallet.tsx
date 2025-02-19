@@ -33,8 +33,6 @@ const formSchema = z.object({
     address: z
         .string()
         .min(2, { message: "Address wallet must be at least 2 characters." }),
-    check_extension: z.boolean().default(false).optional(),
-    check_application: z.boolean().default(false).optional(),
 });
 
 export function DialogWalletPOST() {
@@ -45,8 +43,6 @@ export function DialogWalletPOST() {
         defaultValues: {
             name: "",
             address: "",
-            check_extension: false,
-            check_application: false,
         },
     });
 
@@ -120,50 +116,6 @@ export function DialogWalletPOST() {
                                 </FormItem>
                             )}
                         />
-
-                        <FormLabel>Location?</FormLabel>
-                        <div className="flex flex-row gap-2 my-1">
-                            <FormField
-                                control={form.control}
-                                name="check_extension"
-                                render={({ field }) => (
-                                    <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4 hover:border-black hover:shadow-xl">
-                                        <FormControl>
-                                            <Checkbox
-                                                checked={field.value}
-                                                onCheckedChange={field.onChange}
-                                            />
-                                        </FormControl>
-                                        <div className="space-y-1 leading-none">
-                                            <FormLabel>Extension?</FormLabel>
-                                            <FormDescription>
-                                                this wallet is on extension?
-                                            </FormDescription>
-                                        </div>
-                                    </FormItem>
-                                )}
-                            />
-                            <FormField
-                                control={form.control}
-                                name="check_application"
-                                render={({ field }) => (
-                                    <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4 hover:border-black hover:shadow-xl">
-                                        <FormControl>
-                                            <Checkbox
-                                                checked={field.value}
-                                                onCheckedChange={field.onChange}
-                                            />
-                                        </FormControl>
-                                        <div className="space-y-1 leading-none">
-                                            <FormLabel>Application?</FormLabel>
-                                            <FormDescription>
-                                                this wallet is on application?
-                                            </FormDescription>
-                                        </div>
-                                    </FormItem>
-                                )}
-                            />
-                        </div>
                     </form>
                 </Form>
                 <DialogFooter>

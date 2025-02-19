@@ -63,12 +63,12 @@ model VerificationToken {
 }
 
 model Wallets {
-    id                Int      @id @default(autoincrement())
-    userId            String   @map("user_id")
-    name              String?
-    address           String?
-    check_extension   Boolean?
-    check_application Boolean?
+    id         Int      @id @default(autoincrement())
+    userId     String   @map("user_id")
+    name       String
+    address    String
+    created_at DateTime @default(now())
+    updated_at DateTime @updatedAt
 
     user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }

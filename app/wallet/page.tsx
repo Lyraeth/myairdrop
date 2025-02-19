@@ -1,10 +1,11 @@
 import { authOptions } from "@/lib/auth";
 import prisma from "@/lib/prisma";
-import { Wallets, columns } from "@/app/wallet/columns";
+import { columns } from "@/app/wallet/columns";
 import { DataTable } from "@/app/wallet/data-table";
 import AppBreadcrumb from "@/components/breadcrumb";
 import PageTransition from "@/app/components/motion/PageTransition";
 import { getServerSession } from "next-auth";
+import { Wallets } from "@/lib/type/Wallets";
 
 async function getData(): Promise<Wallets[]> {
     const session = await getServerSession(authOptions);

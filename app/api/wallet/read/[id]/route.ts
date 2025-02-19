@@ -22,15 +22,14 @@ export async function GET(
             where: {
                 id: Number(id),
             },
-            include: {
-                user: {
-                    select: {
-                        name: true,
-                    },
-                },
+        });
+        return NextResponse.json({
+            message: "Get wallet success!",
+            wallet: {
+                name: result?.name,
+                address: result?.address,
             },
         });
-        return NextResponse.json(result);
     } catch (error) {
         return NextResponse.json(
             { error: "Wallet not found" },
