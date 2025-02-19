@@ -86,7 +86,7 @@ const ViewWallet: React.FC<WalletViewActionsProps> = ({
                                         {wallet.name}
                                     </div>
                                 </div>
-
+                                <Separator className="my-4" />
                                 <div className="space-y-1.5">
                                     <label className="text-sm font-medium text-gray-500">
                                         Wallet Address

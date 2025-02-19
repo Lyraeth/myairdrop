@@ -43,7 +43,7 @@ const DeleteWallet: React.FC<WalletDeleteActionsProps> = ({
         <AlertDialog open={openDeleteWallet} onOpenChange={onOpenChange}>
             <AlertDialogContent className="sm:max-w-[425px]">
                 <AlertDialogHeader>
-                    <AlertDialogTitle className="text-xl font-semibold text-red-600">
+                    <AlertDialogTitle className="text-xl font-semibold">
                         Delete Wallet
                     </AlertDialogTitle>
                     <AlertDialogDescription className="mt-4 text-gray-600">
@@ -53,12 +53,12 @@ const DeleteWallet: React.FC<WalletDeleteActionsProps> = ({
                     </AlertDialogDescription>
                 </AlertDialogHeader>
                 <AlertDialogFooter className="mt-6">
-                    <AlertDialogCancel className="neoshadows">
+                    <AlertDialogCancel className="neoshadows bg-base3">
                         Cancel
                     </AlertDialogCancel>
                     <AlertDialogAction
                         onClick={handleDelete}
-                        className="neoshadows bg-red-600 hover:bg-red-700 text-white"
+                        className="neoshadows bg-base4 hover:bg-base4 text-black"
                     >
                         Delete Wallet
                     </AlertDialogAction>

@@ -1,5 +1,6 @@
 "use client";
 
+import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { DialogWalletPOST } from "@/app/wallet/components/CreateWallet";
@@ -69,13 +70,13 @@ export function DataTable<TData, TValue>({
                                 .getColumn("name")
                                 ?.setFilterValue(event.target.value)
                         }
-                        className="max-w-sm neoshadows"
+                        className="max-w-sm neoshadows bg-base1"
                     />
                     <RefreshButton />
                 </div>
                 <DialogWalletPOST />
             </div>
-            <div className="rounded-md border neoshadows">
+            <div className="rounded-md border neoshadows bg-base1">
                 <Table>
                     <TableHeader>
                         {table.getHeaderGroups().map((headerGroup) => (
@@ -129,7 +130,7 @@ export function DataTable<TData, TValue>({
                 </Table>
             </div>
             <div className="flex items-center justify-between space-x-2 py-4">
-                <div className="neoshadows px-2 py-1">
+                <div className="neoshadows px-2 py-1 bg-base3">
                     <p>Total Wallet : {data.length}</p>
                 </div>
                 <div className="flex flex-row space-x-2">
@@ -138,7 +139,10 @@ export function DataTable<TData, TValue>({
                         size="sm"
                         onClick={() => table.previousPage()}
                         disabled={!table.getCanPreviousPage()}
-                        className="neoshadows"
+                        className={cn(
+                            "neoshadows",
+                            table.getCanPreviousPage() ? "bg-base3" : "bg-base4"
+                        )}
                     >
                         Previous
                     </Button>
@@ -147,7 +151,10 @@ export function DataTable<TData, TValue>({
                         size="sm"
                         onClick={() => table.nextPage()}
                         disabled={!table.getCanNextPage()}
-                        className="neoshadows"
+                        className={cn(
+                            "neoshadows",
+                            table.getCanNextPage() ? "bg-base3" : "bg-base4"
+                        )}
                     >
                         Next
                     </Button>

@@ -20,7 +20,6 @@ import {
     FormItem,
     FormLabel,
     FormMessage,
-    FormDescription,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
@@ -71,7 +70,7 @@ export function DialogWalletPOST() {
 
     return (
         <Dialog>
-            <DialogTrigger className="neoshadows bg-green-200/90 hover:bg-green-400 px-1">
+            <DialogTrigger className="neoshadows bg-base3 px-2">
                 Add Wallet
             </DialogTrigger>
             <DialogContent>

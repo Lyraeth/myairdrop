@@ -27,11 +27,12 @@ import {
 const formSchema = z.object({
     name: z
         .string()
-        .min(2, { message: "Name wallet must be at least 2 characters." })
-        .max(50, { message: "Name wallet maximal 50 characters." }),
+        .min(2, { message: "Wallet name must be at least 2 characters." })
+        .max(20, { message: "Wallet name maximal 20 characters." }),
     address: z
         .string()
-        .min(2, { message: "Address wallet must be at least 2 characters." }),
+        .min(2, { message: "Address wallet must be at least 2 characters." })
+        .max(75, { message: "Wallet address maximal 75 characters." }),
 });
 
 type WalletEditActionsProps = {
@@ -137,6 +138,7 @@ const EditWallet: React.FC<WalletEditActionsProps> = ({
                                 </FormItem>
                             )}
                         />
+                        <Separator className="my-4" />
                         <FormField
                             control={form.control}
                             name="address"
@@ -158,7 +160,7 @@ const EditWallet: React.FC<WalletEditActionsProps> = ({
                         type="submit"
                         disabled={isSubmitting}
                         onClick={form.handleSubmit(handleEdit)}
-                        className="neoshadows bg-green-200 hover:bg-green-400"
+                        className="neoshadows bg-base3 hover:bg-green-400"
                     >
                         {isSubmitting ? "Submitting..." : "Change"}
                     </Button>
