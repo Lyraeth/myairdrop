@@ -1,0 +1,61 @@
+import { authOptions } from "@/lib/auth";
+import prisma from "@/lib/prisma";
+import { columns } from "@/app/airdrop/colums";
+import { DataTable } from "@/app/airdrop/data-table";
+import AppBreadcrumb from "@/components/breadcrumb";
+import PageTransition from "@/app/components/motion/PageTransition";
+import { getServerSession } from "next-auth";
+import { Airdrops } from "@/lib/type/Airdrops";
+
+async function getData(): Promise<Airdrops[]> {
+    const session = await getServerSession(authOptions);
+
+    if (!session) {
+        return [];
+    }
+
+    const data = await prisma.airdrops.findMany({
+        where: {
+            user: { email: session?.user?.email },
+        },
+        include: {
+            wallet: true,
+            tags: {
+                include: {
+                    tag: true,
+                },
+            },
+        },
+    });
+
+    return data.map((airdrop) => ({
+        ...airdrop,
+        tags: airdrop.tags.map((tag) => ({
+            id: tag.tag.id,
+            name: tag.tag.name,
+            airdrops: [],
+        })),
+    }));
+}
+
+export default async function Wallet() {
+    const data = await getData();
+    const session = await getServerSession(authOptions);
+
+    if (!session) {
+        return (
+            <main className="flex justify-center items-center mt-20">
+                <h1>You need to be authenticated to view this page.</h1>
+            </main>
+        );
+    }
+
+    return (
+        <PageTransition>
+            <main className="container mx-auto py-5 px-5">
+                <AppBreadcrumb />
+                <DataTable columns={columns} data={data} />
+            </main>
+        </PageTransition>
+    );
+}

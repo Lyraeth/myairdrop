@@ -1,9 +1,9 @@
+interface AirdropsTag {
+    airdropId: string;
+    tagId: string;
+}
 export interface Tag {
     id: string;
     name: string;
-}
-
-export interface AirdropsTag {
-    airdropId: string;
-    tagId: string;
+    airdrops: AirdropsTag[];
 }

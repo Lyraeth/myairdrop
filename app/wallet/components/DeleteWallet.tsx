@@ -11,7 +11,7 @@ import {
 } from "@/components/ui/alert-dialog";
 
 type WalletDeleteActionsProps = {
-    walletId: number;
+    walletId: string;
     openDeleteWallet: boolean;
     onOpenChange: (open: boolean) => void;
 };

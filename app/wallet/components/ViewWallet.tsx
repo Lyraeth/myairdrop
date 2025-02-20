@@ -12,7 +12,7 @@ import { Copy } from "lucide-react";
 import { Wallets } from "@/lib/type/Wallets";
 
 type WalletViewActionsProps = {
-    walletId: number;
+    walletId: string;
     openViewWallet: boolean;
     onOpenChange: (openViewWallet: boolean) => void;
 };

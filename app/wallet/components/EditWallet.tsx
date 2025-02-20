@@ -36,7 +36,7 @@ const formSchema = z.object({
 });
 
 type WalletEditActionsProps = {
-    walletId: number;
+    walletId: string;
     openEditWallet: boolean;
     onOpenEditChange: (openEditWallet: boolean) => void;
 };

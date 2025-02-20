@@ -14,7 +14,7 @@ import {
 import EditWallet from "./EditWallet";
 
 type WalletActionsProps = {
-    walletId: number;
+    walletId: string;
     address: string;
 };
 

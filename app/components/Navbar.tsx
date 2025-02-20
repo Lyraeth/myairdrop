@@ -2,7 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import { motion } from "motion/react";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import {
@@ -40,6 +40,7 @@ const navItems = [
 ];
 
 export default function Navbar() {
+    const router = useRouter();
     const path = usePathname();
     const { data: session } = useSession();
 
@@ -149,7 +150,11 @@ export default function Navbar() {
                                             </DropdownMenuItem>
                                             <DropdownMenuItem>
                                                 <button
-                                                    onClick={() => signOut()}
+                                                    onClick={() =>
+                                                        signOut({
+                                                            callbackUrl: "/",
+                                                        })
+                                                    }
                                                     className="w-full text-left"
                                                 >
                                                     Log out
