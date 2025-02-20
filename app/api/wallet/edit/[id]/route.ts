@@ -9,7 +9,7 @@ export async function PUT(
 ) {
     const id = (await params).id;
     const body = await request.json();
-    const { name, address, check_extension, check_application } = body;
+    const { name, address } = body;
     const session = await getServerSession(authOptions);
 
     if (!session) {
@@ -22,16 +22,14 @@ export async function PUT(
     try {
         const result = await prisma.wallets.update({
             where: {
-                id: Number(id),
+                id: id,
             },
             data: {
                 name: name,
                 address: address,
-                check_extension: check_extension,
-                check_application: check_application,
             },
         });
-        return NextResponse.json(result);
+        return NextResponse.json({ message: "Edit wallet success!" });
     } catch (error) {
         console.error("Error updating wallet:", error);
         return NextResponse.json(

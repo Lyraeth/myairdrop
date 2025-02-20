@@ -1,28 +1,40 @@
 import { authOptions } from "@/lib/auth";
 import prisma from "@/lib/prisma";
-import { columns } from "@/app/wallet/columns";
-import { DataTable } from "@/app/wallet/data-table";
+import { columns } from "@/app/airdrop/colums";
+import { DataTable } from "@/app/airdrop/data-table";
 import AppBreadcrumb from "@/components/breadcrumb";
 import PageTransition from "@/app/components/motion/PageTransition";
 import { getServerSession } from "next-auth";
-import { Wallets } from "@/lib/type/Wallets";
+import { Airdrops } from "@/lib/type/Airdrops";
 
-async function getData(): Promise<Wallets[]> {
+async function getData(): Promise<Airdrops[]> {
     const session = await getServerSession(authOptions);
 
     if (!session) {
         return [];
     }
 
-    const data = await prisma.wallets.findMany({
+    const data = await prisma.airdrops.findMany({
         where: {
             user: { email: session?.user?.email },
         },
+        include: {
+            wallet: true,
+            tags: {
+                include: {
+                    tag: true,
+                },
+            },
+        },
     });
 
-    return data.map((wallet) => ({
-        ...wallet,
-        address: wallet.address ?? "[No Address]",
+    return data.map((airdrop) => ({
+        ...airdrop,
+        tags: airdrop.tags.map((tag) => ({
+            id: tag.tag.id,
+            name: tag.tag.name,
+            airdrops: [],
+        })),
     }));
 }
 

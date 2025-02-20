@@ -3,9 +3,9 @@
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { DialogWalletPOST } from "@/app/wallet/components/CreateWallet";
 import RefreshButton from "@/app/components/RefreshButton";
 import * as React from "react";
+import { DialogAirdropPOST } from "@/app/airdrop/components/CreateAirdrop";
 import {
     ColumnDef,
     ColumnFiltersState,
@@ -59,22 +59,22 @@ export function DataTable<TData, TValue>({
             <div className="flex flex-row justify-between py-4">
                 <div className="flex flex-row w-full space-x-4 mr-2">
                     <Input
-                        placeholder="Cari nama wallet ..."
+                        placeholder="Cari nama airdrop ..."
                         value={
                             (table
-                                .getColumn("name")
+                                .getColumn("nameProject")
                                 ?.getFilterValue() as string) ?? ""
                         }
                         onChange={(event) =>
                             table
-                                .getColumn("name")
+                                .getColumn("nameProject")
                                 ?.setFilterValue(event.target.value)
                         }
                         className="max-w-sm neoshadows bg-base1"
                     />
                     <RefreshButton />
                 </div>
-                <DialogWalletPOST />
+                <DialogAirdropPOST />
             </div>
             <div className="rounded-md border neoshadows bg-base1">
                 <Table>
@@ -131,7 +131,7 @@ export function DataTable<TData, TValue>({
             </div>
             <div className="flex items-center justify-between space-x-2 py-4">
                 <div className="neoshadows px-2 py-1 bg-base3">
-                    <p>Total Wallet : {data.length}</p>
+                    <p>Total Airdrop : {data.length}</p>
                 </div>
                 <div className="flex flex-row space-x-2">
                     <Button

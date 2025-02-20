@@ -42,3 +42,10 @@ body {
         --radius: 0.5rem;
     }
 }
+
+:root {
+    --base1: #f8f3d9;
+    --base2: #ebe5c2;
+    --base3: #b9b28a;
+    --base4: #504b38;
+}

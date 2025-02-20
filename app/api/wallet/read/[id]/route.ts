@@ -20,17 +20,16 @@ export async function GET(
     try {
         const result = await prisma.wallets.findUnique({
             where: {
-                id: Number(id),
-            },
-            include: {
-                user: {
-                    select: {
-                        name: true,
-                    },
-                },
+                id: id,
             },
         });
-        return NextResponse.json(result);
+        return NextResponse.json({
+            message: "Get wallet success!",
+            wallet: {
+                name: result?.name,
+                address: result?.address,
+            },
+        });
     } catch (error) {
         return NextResponse.json(
             { error: "Wallet not found" },

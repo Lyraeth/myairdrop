@@ -1,5 +1,8 @@
 "use client";
 
+import { cn } from "@/lib/utils";
+import { motion } from "motion/react";
+import { usePathname, useRouter } from "next/navigation";
 import { signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import {
@@ -16,7 +19,6 @@ import {
     NavigationMenuItem,
     NavigationMenuList,
 } from "@/components/ui/navigation-menu";
-import { motion } from "motion/react";
 
 const navItems = [
     {
@@ -38,13 +40,15 @@ const navItems = [
 ];
 
 export default function Navbar() {
+    const router = useRouter();
+    const path = usePathname();
     const { data: session } = useSession();
 
     return (
-        <nav className="flex flex-row justify-center items-center p-4 border-b-4 border-black shadow-md">
+        <nav className="flex flex-row justify-center items-center p-4 border-b-4 border-black shadow-md bg-base1">
             <div className="flex flex-row justify-between items-center w-full">
                 <DropdownMenu>
-                    <DropdownMenuTrigger className="neoshadows px-2 py-1">
+                    <DropdownMenuTrigger className="neoshadows px-2 py-1 bg-base3">
                         <div className="hidden md:block">MyAirdrop</div>
                         <List className="block md:hidden" />
                     </DropdownMenuTrigger>
@@ -62,27 +66,39 @@ export default function Navbar() {
                 </DropdownMenu>
                 <div className="hidden md:block">
                     <NavigationMenu>
-                        <NavigationMenuList>
-                            <NavigationMenuItem>
-                                {navItems
-                                    .filter(() => session)
-                                    .map((item) => (
-                                        <Link
-                                            key={item.url}
-                                            href={item.url}
-                                            className="p-2 hover:text-gray-400"
+                        <NavigationMenuList className="flex flex-row">
+                            {navItems
+                                .filter(() => session)
+                                .map((item) => (
+                                    <NavigationMenuItem
+                                        key={item.url}
+                                        className="flex"
+                                    >
+                                        <motion.div
+                                            whileHover={{ scale: 1.2 }}
+                                            className="inline-block"
                                         >
-                                            <span>{item.title}</span>
-                                        </Link>
-                                    ))}
-                            </NavigationMenuItem>
+                                            <Link
+                                                href={item.url}
+                                                className={cn(
+                                                    "p-2",
+                                                    path === item.url
+                                                        ? "neoshadows bg-[#B9B28A]"
+                                                        : ""
+                                                )}
+                                            >
+                                                {item.title}
+                                            </Link>
+                                        </motion.div>
+                                    </NavigationMenuItem>
+                                ))}
                         </NavigationMenuList>
                     </NavigationMenu>
                 </div>
                 {!session ? (
                     <Link
                         href="/api/auth/signin"
-                        className="neoshadows px-2 py-1"
+                        className="neoshadows px-2 py-1 bg-base3"
                     >
                         Login
                     </Link>
@@ -93,7 +109,7 @@ export default function Navbar() {
                                 whileTap={{ scale: 1.2 }}
                                 transition={{ type: "spring" }}
                             >
-                                <DropdownMenuTrigger className="px-4 py-1 neoshadows">
+                                <DropdownMenuTrigger className="px-4 py-1 neoshadows bg-[#B9B28A]">
                                     <motion.div whileTap={{ rotate: 180 }}>
                                         <Settings />
                                     </motion.div>
@@ -134,7 +150,11 @@ export default function Navbar() {
                                             </DropdownMenuItem>
                                             <DropdownMenuItem>
                                                 <button
-                                                    onClick={() => signOut()}
+                                                    onClick={() =>
+                                                        signOut({
+                                                            callbackUrl: "/",
+                                                        })
+                                                    }
                                                     className="w-full text-left"
                                                 >
                                                     Log out

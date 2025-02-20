@@ -11,8 +11,7 @@ export default function RefreshButton() {
 
     return (
         <Button
-            className="neoshadows bg-teal-200 hover:bg-teal-400 text-black"
-            variant={"default"}
+            className="neoshadows bg-base3 hover:bg-base3 text-black"
             disabled={isPending}
             onClick={() => {
                 startTransition(() => {

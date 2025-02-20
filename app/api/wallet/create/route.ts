@@ -5,7 +5,7 @@ import { NextResponse } from "next/server";
 
 export const POST = async (req: Request) => {
     const body = await req.json();
-    const { name, address, check_extension, check_application } = body;
+    const { name, address } = body;
     const session = await getServerSession(authOptions);
 
     if (!session || !session?.user?.email) {
@@ -19,11 +19,13 @@ export const POST = async (req: Request) => {
         data: {
             name: name,
             address: address,
-            check_extension: check_extension,
-            check_application: check_application,
-            user: { connect: { email: session.user.email } },
+            user: {
+                connect: {
+                    email: session.user.email,
+                },
+            },
         },
     });
 
-    return NextResponse.json(result);
+    return NextResponse.json({ message: "Create wallet success!" });
 };

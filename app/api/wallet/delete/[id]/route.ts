@@ -20,10 +20,12 @@ export async function DELETE(
     try {
         const result = await prisma.wallets.delete({
             where: {
-                id: Number(id),
+                id: id,
             },
         });
-        return NextResponse.json(result);
+        return NextResponse.json({
+            message: "Delete wallet success!",
+        });
     } catch (error) {
         return NextResponse.json(
             { error: "Wallet not found or already deleted" },

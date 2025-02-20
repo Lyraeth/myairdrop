@@ -1,13 +1,13 @@
 import { z } from "zod";
 import { useState, useEffect } from "react";
 import { Separator } from "@/components/ui/separator";
-import { Checkbox } from "@/components/ui/checkbox";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Check } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
+import { Wallets } from "@/lib/type/Wallets";
+import { ViewWalletSkeleton } from "@/app/wallet/components/skeleton/ViewWalletSkeleton";
 import {
     Dialog,
     DialogContent,
@@ -22,33 +22,31 @@ import {
     FormItem,
     FormLabel,
     FormMessage,
-    FormDescription,
 } from "@/components/ui/form";
 
 const formSchema = z.object({
     name: z
         .string()
-        .min(2, { message: "Name wallet must be at least 2 characters." })
-        .max(50, { message: "Name wallet maximal 50 characters." }),
+        .min(2, { message: "Wallet name must be at least 2 characters." })
+        .max(20, { message: "Wallet name maximal 20 characters." }),
     address: z
         .string()
-        .min(2, { message: "Address wallet must be at least 2 characters." }),
-    check_extension: z.boolean().default(false).optional(),
-    check_application: z.boolean().default(false).optional(),
+        .min(2, { message: "Address wallet must be at least 2 characters." })
+        .max(75, { message: "Wallet address maximal 75 characters." }),
 });
 
 type WalletEditActionsProps = {
-    walletId: number;
+    walletId: string;
     openEditWallet: boolean;
     onOpenEditChange: (openEditWallet: boolean) => void;
 };
 
-type Wallet = {
-    name: string;
-    address: string;
-    check_extension: boolean;
-    check_application: boolean;
-};
+interface Wallet extends Wallets {
+    wallet: {
+        name: string;
+        address: string;
+    };
+}
 
 const EditWallet: React.FC<WalletEditActionsProps> = ({
     walletId,
@@ -63,8 +61,6 @@ const EditWallet: React.FC<WalletEditActionsProps> = ({
         defaultValues: {
             name: "",
             address: "",
-            check_extension: false,
-            check_application: false,
         },
     });
 
@@ -80,8 +76,8 @@ const EditWallet: React.FC<WalletEditActionsProps> = ({
                 throw new Error(errorData.error || "Failed to view wallet");
             }
             const data = await response.json();
-            setWalletData(data);
-            reset(data);
+            setWalletData(data.wallet);
+            reset(data.wallet);
         } catch (error) {
             console.error("Error viewing wallet:", error);
         }
@@ -142,6 +138,7 @@ const EditWallet: React.FC<WalletEditActionsProps> = ({
                                 </FormItem>
                             )}
                         />
+                        <Separator className="my-4" />
                         <FormField
                             control={form.control}
                             name="address"
@@ -155,50 +152,6 @@ const EditWallet: React.FC<WalletEditActionsProps> = ({
                                 </FormItem>
                             )}
                         />
-
-                        <FormLabel>Location?</FormLabel>
-                        <div className="flex flex-row gap-2 my-1">
-                            <FormField
-                                control={form.control}
-                                name="check_extension"
-                                render={({ field }) => (
-                                    <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4 hover:border-black hover:shadow-xl">
-                                        <FormControl>
-                                            <Checkbox
-                                                checked={field.value}
-                                                onCheckedChange={field.onChange}
-                                            />
-                                        </FormControl>
-                                        <div className="space-y-1 leading-none">
-                                            <FormLabel>Extension?</FormLabel>
-                                            <FormDescription>
-                                                this wallet is on extension?
-                                            </FormDescription>
-                                        </div>
-                                    </FormItem>
-                                )}
-                            />
-                            <FormField
-                                control={form.control}
-                                name="check_application"
-                                render={({ field }) => (
-                                    <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4 hover:border-black hover:shadow-xl">
-                                        <FormControl>
-                                            <Checkbox
-                                                checked={field.value}
-                                                onCheckedChange={field.onChange}
-                                            />
-                                        </FormControl>
-                                        <div className="space-y-1 leading-none">
-                                            <FormLabel>Application?</FormLabel>
-                                            <FormDescription>
-                                                this wallet is on application?
-                                            </FormDescription>
-                                        </div>
-                                    </FormItem>
-                                )}
-                            />
-                        </div>
                     </form>
                 </Form>
                 <DialogFooter>
@@ -207,7 +160,7 @@ const EditWallet: React.FC<WalletEditActionsProps> = ({
                         type="submit"
                         disabled={isSubmitting}
                         onClick={form.handleSubmit(handleEdit)}
-                        className="neoshadows bg-green-200 hover:bg-green-400"
+                        className="neoshadows bg-base3 hover:bg-base3"
                     >
                         {isSubmitting ? "Submitting..." : "Change"}
                     </Button>

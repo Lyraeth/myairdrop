@@ -24,7 +24,7 @@ export default function RootLayout({
         <html lang="en">
             <LayoutSession>
                 <body
-                    className={`${overpass.className} top-0 bottom-0 right-0 left-0 h-full w-full bg-[#fcfcf7] text-black`}
+                    className={`${overpass.className} top-0 bottom-0 right-0 left-0 h-full w-full bg-base2 text-black`}
                 >
                     <Navbar />
                     {children}
