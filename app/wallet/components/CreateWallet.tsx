@@ -23,6 +23,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
+import { Separator } from "@/components/ui/separator";
 
 const formSchema = z.object({
     name: z
@@ -79,6 +80,7 @@ export function DialogWalletPOST() {
                     <DialogDescription>
                         Input your unique Wallet Name and Wallet Address.
                     </DialogDescription>
+                    <Separator />
                 </DialogHeader>
 
                 <Form {...form}>
@@ -99,6 +101,10 @@ export function DialogWalletPOST() {
                                 </FormItem>
                             )}
                         />
+                    </form>
+                </Form>
+                <Form {...form}>
+                    <form onSubmit={form.handleSubmit(onSubmit)}>
                         <FormField
                             control={form.control}
                             name="address"
