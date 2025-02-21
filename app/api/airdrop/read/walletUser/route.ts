@@ -5,6 +5,7 @@ export async function GET() {
     try {
         const wallets = await prisma.wallets.findMany({
             select: {
+                id: true,
                 name: true,
                 address: true,
             },
