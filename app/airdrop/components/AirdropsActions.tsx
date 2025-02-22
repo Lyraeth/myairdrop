@@ -2,8 +2,9 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { MoreHorizontal } from "lucide-react";
 import ViewAirdrop from "@/app/airdrop/components/ViewAirdrop";
-// import DeleteAirdrop from "@/app/airdrop/components/DeleteAirdrop";
-import { Eye, Trash2 } from "lucide-react";
+// import EditAirdrop from "@/app/airdrop/components/EditAirdrop";
+import DeleteAirdrop from "@/app/airdrop/components/DeleteAirdrop";
+import { Eye, Edit, Trash2 } from "lucide-react";
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -17,8 +18,9 @@ type AirdropActionsProps = {
 };
 
 const AirdropsActions: React.FC<AirdropActionsProps> = ({ airdropId }) => {
-    // const [deleteAirdropOpen, setDeleteAirdropOpen] = useState(false);
+    const [deleteAirdropOpen, setDeleteAirdropOpen] = useState(false);
     const [viewAirdropOpen, setViewAirdropOpen] = useState(false);
+    // const [editAirdropOpen, setEditAirdropOpen] = useState(false);
 
     return (
         <>
@@ -35,12 +37,16 @@ const AirdropsActions: React.FC<AirdropActionsProps> = ({ airdropId }) => {
                         <Eye className="w-2 h-2" />
                         View airdrop
                     </DropdownMenuItem>
-                    {/* <DropdownMenuItem
+                    {/* <DropdownMenuItem onClick={() => setEditAirdropOpen(true)}>
+                        <Edit className="w-2 h-2" />
+                        Edit airdrop
+                    </DropdownMenuItem> */}
+                    <DropdownMenuItem
                         onClick={() => setDeleteAirdropOpen(true)}
                     >
                         <Trash2 className="w-2 h-2" />
                         Delete airdrop
-                    </DropdownMenuItem> */}
+                    </DropdownMenuItem>
                 </DropdownMenuContent>
             </DropdownMenu>
 
@@ -48,17 +54,25 @@ const AirdropsActions: React.FC<AirdropActionsProps> = ({ airdropId }) => {
                 <ViewAirdrop
                     airdropId={airdropId}
                     openViewAirdrop={viewAirdropOpen}
-                    onOpenChange={setViewAirdropOpen}
+                    onOpenViewChange={setViewAirdropOpen}
                 />
             )}
 
-            {/* {deleteAirdropOpen && (
+            {/* {editAirdropOpen && (
+                <EditAirdrop
+                    airdropId={airdropId}
+                    openEditAirdrop={editAirdropOpen}
+                    onOpenEditChange={setEditAirdropOpen}
+                />
+            )} */}
+
+            {deleteAirdropOpen && (
                 <DeleteAirdrop
                     airdropId={airdropId}
                     openDeleteAirdrop={deleteAirdropOpen}
                     onOpenChange={setDeleteAirdropOpen}
                 />
-            )} */}
+            )}
         </>
     );
 };

@@ -25,13 +25,14 @@ export async function GET(
             select: {
                 id: true,
                 nameProject: true,
-                linkProject: true, 
+                linkProject: true,
                 linkAirdrop: true,
                 descAirdrop: true,
                 created_at: true,
                 updated_at: true,
                 wallet: {
                     select: {
+                        id: true,
                         name: true,
                         address: true,
                     },
@@ -51,10 +52,10 @@ export async function GET(
 
         return NextResponse.json({
             ...result,
-            tags: result?.tags.map((t) => ({
-                id: t.tag.id,
-                name: t.tag.name,
-            })),
+            tags: result?.tags.map((tag) => ({
+                id: tag.tag.id,
+                name: tag.tag.name,
+            }))
         });
     } catch (error) {
         return NextResponse.json(
