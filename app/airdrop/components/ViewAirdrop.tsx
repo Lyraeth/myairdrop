@@ -16,13 +16,13 @@ import {
 type AirdropViewActionsProps = {
     airdropId: string;
     openViewAirdrop: boolean;
-    onOpenChange: (openViewAirdrop: boolean) => void;
+    onOpenViewChange: (openViewAirdrop: boolean) => void;
 };
 
 const ViewAirdrop: React.FC<AirdropViewActionsProps> = ({
     airdropId,
     openViewAirdrop,
-    onOpenChange,
+    onOpenViewChange,
 }) => {
     const [airdropData, setAirdropData] = useState<Airdrops | null>(null);
 
@@ -53,7 +53,7 @@ const ViewAirdrop: React.FC<AirdropViewActionsProps> = ({
     }, [openViewAirdrop, airdropId]);
 
     return (
-        <Dialog open={openViewAirdrop} onOpenChange={onOpenChange}>
+        <Dialog open={openViewAirdrop} onOpenChange={onOpenViewChange}>
             <DialogContent className="sm:max-w-[425px] md:max-w-[450px]">
                 <DialogHeader>
                     <DialogTitle className="text-xl font-semibold">

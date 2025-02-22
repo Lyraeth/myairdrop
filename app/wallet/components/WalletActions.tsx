@@ -2,7 +2,9 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { MoreHorizontal } from "lucide-react";
 import ViewWallet from "@/app/wallet/components/ViewWallet";
+import EditWallet from "@/app/wallet/components/EditWallet";
 import DeleteWallet from "@/app/wallet/components/DeleteWallet";
+import { Eye, Copy, Edit, Trash2 } from "lucide-react";
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -11,7 +13,6 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import EditWallet from "./EditWallet";
 
 type WalletActionsProps = {
     walletId: string;
@@ -37,18 +38,22 @@ const WalletActions: React.FC<WalletActionsProps> = ({ walletId, address }) => {
                     <DropdownMenuItem
                         onClick={() => navigator.clipboard.writeText(address)}
                     >
+                        <Copy className="w-2 h-2" />
                         Copy address wallet
                     </DropdownMenuItem>
                     <DropdownMenuSeparator />
                     <DropdownMenuItem onClick={() => setViewWalletOpen(true)}>
+                        <Eye className="w-2 h-2" />
                         View wallet
                     </DropdownMenuItem>
                     <DropdownMenuItem
                         onClick={() => setopenEditViewWallet(true)}
                     >
+                        <Edit className="w-2 h-2" />
                         Edit wallet
                     </DropdownMenuItem>
                     <DropdownMenuItem onClick={() => setOpenDeleteWallet(true)}>
+                        <Trash2 className="w-2 h-2" />
                         Delete wallet
                     </DropdownMenuItem>
                 </DropdownMenuContent>
