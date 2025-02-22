@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { DialogWalletPOST } from "@/app/wallet/components/CreateWallet";
 import RefreshButton from "@/app/components/RefreshButton";
 import * as React from "react";
+import { motion } from "motion/react";
 import {
     ColumnDef,
     ColumnFiltersState,
@@ -108,10 +109,19 @@ export function DataTable<TData, TValue>({
                                 >
                                     {row.getVisibleCells().map((cell) => (
                                         <TableCell key={cell.id}>
-                                            {flexRender(
-                                                cell.column.columnDef.cell,
-                                                cell.getContext()
-                                            )}
+                                            <motion.div
+                                                initial={{ opacity: 0, y: 20 }}
+                                                animate={{ opacity: 1, y: 0 }}
+                                                transition={{
+                                                    duration: 2,
+                                                    type: "spring",
+                                                }}
+                                            >
+                                                {flexRender(
+                                                    cell.column.columnDef.cell,
+                                                    cell.getContext()
+                                                )}
+                                            </motion.div>
                                         </TableCell>
                                     ))}
                                 </TableRow>
